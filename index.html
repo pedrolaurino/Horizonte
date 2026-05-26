@@ -5,122 +5,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Horizonte - Liberdade em Família</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #090b10; color: #f8fafc; overflow-x: hidden; }
-        .glass { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        :root { --gold: #f0b03e; --bg: #090b10; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #f8fafc; overflow-x: hidden; }
+        .glass { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
         .gradient-gold { background: linear-gradient(135deg, #f0b03e 0%, #d97706 100%); }
+        .text-gold { color: var(--gold); }
         .hidden { display: none; }
         input { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; color: white !important; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
-<body class="min-h-screen pb-10">
+<body class="min-h-screen pb-20">
 
-    <!-- TELA 1: LOGIN -->
+    <!-- TELA DE LOGIN -->
     <section id="screen-login" class="min-h-screen flex items-center justify-center p-6">
-        <div class="max-w-md w-full text-center space-y-8 glass p-10 rounded-[2rem]">
-            <div>
-                <h1 class="text-5xl font-extrabold tracking-tighter text-[#f0b03e] mb-2">Horizonte</h1>
-                <p class="text-gray-400">A jornada para a sua liberdade.</p>
+        <div class="max-w-md w-full text-center space-y-8 glass p-10 rounded-[2.5rem] shadow-2xl">
+            <div class="animate-float">
+                <h1 class="text-6xl font-extrabold tracking-tighter text-gold mb-2">Horizonte</h1>
+                <p class="text-gray-400 font-light tracking-widest uppercase text-xs">O tempo em suas mãos</p>
             </div>
             <div class="space-y-4">
-                <input type="email" placeholder="E-mail" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-[#f0b03e]">
-                <input type="password" placeholder="Senha" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-[#f0b03e]">
-                <button onclick="checkData()" class="w-full py-4 gradient-gold rounded-2xl font-bold text-black shadow-lg hover:opacity-90 transition-all">Acessar Jornada</button>
+                <input type="email" placeholder="E-mail" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-gold/50">
+                <input type="password" placeholder="Senha" class="w-full p-4 rounded-2xl outline-none focus:ring-2 ring-gold/50">
+                <button onclick="checkData()" class="w-full py-4 gradient-gold rounded-2xl font-bold text-black shadow-lg hover:scale-[1.02] transition-all">Entrar na Jornada</button>
             </div>
         </div>
     </section>
 
-    <!-- TELA 2: CONFIGURAÇÃO INICIAL (Só aparece na primeira vez) -->
+    <!-- TELA DE CONFIGURAÇÃO -->
     <section id="screen-setup" class="hidden min-h-screen flex items-center justify-center p-6">
-        <div class="max-w-lg w-full glass p-8 rounded-[2rem] space-y-6">
-            <h2 class="text-2xl font-bold text-[#f0b03e]">Configurar Horizonte</h2>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="col-span-2"><label class="text-xs text-gray-400">Nomes do Casal</label><input id="set-names" type="text" placeholder="Ex: Pedro & Maria" class="w-full p-3 rounded-xl mt-1"></div>
-                <div><label class="text-xs text-gray-400">Idade Atual</label><input id="set-age" type="number" placeholder="30" class="w-full p-3 rounded-xl mt-1"></div>
-                <div><label class="text-xs text-gray-400">Meta (R$)</label><input id="set-goal" type="number" placeholder="1000000" class="w-full p-3 rounded-xl mt-1"></div>
-                <div><label class="text-xs text-gray-400">Valor Inicial (R$)</label><input id="set-initial" type="number" placeholder="5000" class="w-full p-3 rounded-xl mt-1"></div>
-                <div><label class="text-xs text-gray-400">Rendimento CDI % (ano)</label><input id="set-cdi" type="number" placeholder="11.5" class="w-full p-3 rounded-xl mt-1"></div>
+        <div class="max-w-2xl w-full glass p-10 rounded-[2.5rem] space-y-8">
+            <header>
+                <h2 class="text-3xl font-bold text-gold">Desenhe seu Futuro</h2>
+                <p class="text-gray-400 text-sm">Preencha os pilares da sua liberdade.</p>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase">Nomes do Casal</label>
+                    <input id="set-names" type="text" placeholder="Ex: Pedro & Luana" class="w-full p-4 rounded-xl">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase">Idades Atuais</label>
+                    <input id="set-age" type="text" placeholder="Ex: 28 e 26" class="w-full p-4 rounded-xl">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase">Patrimônio Atual (R$)</label>
+                    <input id="set-initial" type="number" placeholder="50000" class="w-full p-4 rounded-xl">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase">Meta de Liberdade (R$)</label>
+                    <input id="set-goal" type="number" placeholder="1500000" class="w-full p-4 rounded-xl">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase">Rendimento Esperado (% ano CDI)</label>
+                    <input id="set-cdi" type="number" placeholder="11.5" class="w-full p-4 rounded-xl">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-bold text-gray-500 uppercase">% de Reinvestimento na Colheita</label>
+                    <input id="set-reinvest" type="number" placeholder="20" class="w-full p-4 rounded-xl">
+                </div>
             </div>
-            <button onclick="saveSetup()" class="w-full py-4 bg-white text-black font-bold rounded-2xl">Começar Agora</button>
+            <button onclick="saveSetup()" class="w-full py-5 bg-white text-black font-black rounded-2xl hover:bg-gold transition-all">CRIAR MEU HORIZONTE</button>
         </div>
     </section>
 
-    <!-- TELA 3: DASHBOARD PRINCIPAL -->
-    <section id="screen-dashboard" class="hidden max-w-4xl mx-auto p-6 pt-12 space-y-8">
-        <!-- Cabeçalho -->
-        <div class="flex justify-between items-center">
+    <!-- DASHBOARD PRINCIPAL -->
+    <section id="screen-dashboard" class="hidden max-w-5xl mx-auto p-6 pt-12 space-y-8">
+        
+        <!-- Header Emocional -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
             <div>
-                <h2 id="display-names" class="text-2xl font-bold italic">Carregando...</h2>
-                <p id="display-message" class="text-sm text-gray-400 italic">"Cada real é um minuto a mais de paz."</p>
+                <p id="display-welcome" class="text-gray-400 text-sm mb-1 uppercase tracking-widest">Bom dia, Pedro & Luana</p>
+                <h2 id="motivational-phrase" class="text-2xl font-light italic text-white/90">"Cada aporte é um passo para o seu primeiro café na varanda da liberdade."</h2>
             </div>
-            <button onclick="showSetup()" class="p-2 glass rounded-full opacity-50 hover:opacity-100">⚙️</button>
+            <div class="flex gap-2">
+                <button onclick="showSetup()" class="p-3 glass rounded-xl hover:bg-white/10 transition-all">⚙️</button>
+                <button onclick="logout()" class="p-3 glass rounded-xl hover:bg-red-500/10 transition-all text-red-400">✕</button>
+            </div>
         </div>
 
-        <!-- Cards Principais -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="glass p-6 rounded-[2rem] col-span-2">
-                <p class="text-gray-400 text-xs uppercase tracking-widest mb-2">Patrimônio Conquistado</p>
-                <h3 id="display-balance" class="text-4xl font-bold mb-4">R$ 0,00</h3>
-                <div class="w-full bg-white/10 h-3 rounded-full overflow-hidden">
-                    <div id="progress-bar" class="gradient-gold h-full transition-all duration-1000" style="width: 0%"></div>
+        <!-- Grid de KPI Principais -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            
+            <!-- Patrimônio Central -->
+            <div class="glass p-8 rounded-[2.5rem] col-span-1 md:col-span-2 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-all">
+                    <span class="text-6xl">📈</span>
                 </div>
-                <p id="display-goal-info" class="text-xs text-gray-500 mt-3 font-medium">Faltam R$ 0 para a próxima mini-meta</p>
+                <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">Patrimônio Acumulado</p>
+                <h3 id="display-balance" class="text-5xl font-black mb-6">R$ 0,00</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between text-[10px] font-bold uppercase text-gray-500">
+                        <span>Progresso até a meta</span>
+                        <span id="display-percent">0%</span>
+                    </div>
+                    <div class="w-full bg-white/5 h-4 rounded-full overflow-hidden border border-white/5 p-[2px]">
+                        <div id="progress-bar" class="gradient-gold h-full rounded-full transition-all duration-1000 shadow-[0_0_15px_rgba(240,176,62,0.3)]" style="width: 0%"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="glass p-6 rounded-[2rem] flex flex-col justify-center border-l-4 border-[#f0b03e]">
-                <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Liberdade em</p>
-                <h3 id="display-date" class="text-2xl font-bold">---</h3>
-                <p id="display-future-age" class="text-sm text-[#f0b03e]">Aos -- anos</p>
+            <!-- Tempo Reduzido Acumulado -->
+            <div class="glass p-8 rounded-[2.5rem] flex flex-col justify-center border-b-4 border-gold bg-gold/5">
+                <p class="text-gold text-xs font-black uppercase tracking-widest mb-2">Tempo Resgatado</p>
+                <h3 id="display-total-saved" class="text-3xl font-bold italic">0 dias</h3>
+                <p class="text-[10px] text-gold/60 mt-2 uppercase tracking-tighter font-bold">Resgatados do futuro</p>
             </div>
+
+            <!-- Idade da Liberdade -->
+            <div class="glass p-8 rounded-[2.5rem] flex flex-col justify-center">
+                <p class="text-gray-400 text-xs font-bold uppercase tracking-widest mb-1 italic">Dia da Liberdade</p>
+                <h3 id="display-date" class="text-xl font-black text-white uppercase tracking-tighter">---</h3>
+                <p id="display-future-age" class="text-sm font-medium text-gray-500">Aos -- anos</p>
+            </div>
+
         </div>
 
-        <!-- Ações Rápida -->
+        <!-- Botões de Ação -->
         <div class="grid grid-cols-2 gap-4">
-            <button onclick="openModal('aporte')" class="glass p-4 rounded-2xl hover:bg-white/5 transition-all flex flex-col items-center">
-                <span class="text-xl mb-1">💰</span>
-                <span class="text-xs font-bold uppercase">Aporte Extra</span>
+            <button onclick="openModal('aporte')" class="glass p-6 rounded-3xl hover:bg-white/5 border border-white/5 hover:border-gold/30 transition-all group">
+                <span class="text-3xl mb-2 block group-hover:scale-110 transition-transform">💰</span>
+                <span class="text-xs font-black uppercase tracking-widest text-gold">Comprar Tempo</span>
             </button>
-            <button onclick="openModal('retirada')" class="glass p-4 rounded-2xl hover:bg-white/5 transition-all flex flex-col items-center">
-                <span class="text-xl mb-1">🍇</span>
-                <span class="text-xs font-bold uppercase">Colher Frutos</span>
+            <button onclick="openModal('retirada')" class="glass p-6 rounded-3xl hover:bg-white/5 border border-white/5 hover:border-gold/30 transition-all group">
+                <span class="text-3xl mb-2 block group-hover:scale-110 transition-transform">🍇</span>
+                <span class="text-xs font-black uppercase tracking-widest text-gray-300">Colher Frutos</span>
             </button>
         </div>
 
-        <!-- Histórico Emocional -->
-        <div class="glass p-8 rounded-[2rem]">
-            <h4 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Linha do Tempo de Conquistas</h4>
-            <div id="history-list" class="space-y-4">
-                <!-- Itens entram aqui via JS -->
+        <!-- Área de Histórico e Marcos -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Histórico Emocional -->
+            <div class="glass p-8 rounded-[2.5rem] lg:col-span-2">
+                <div class="flex justify-between items-center mb-8">
+                    <h4 class="text-xs font-black uppercase tracking-[0.2em] text-gray-500">Histórico da Jornada</h4>
+                    <span id="streak-info" class="text-[10px] bg-white/5 px-3 py-1 rounded-full text-gray-400">🔥 0 meses seguidos</span>
+                </div>
+                <div id="history-list" class="space-y-6">
+                    <!-- Dinâmico -->
+                </div>
             </div>
+
+            <!-- Mini Metas (Marcos de 100k) -->
+            <div class="glass p-8 rounded-[2.5rem] space-y-6">
+                <h4 class="text-xs font-black uppercase tracking-widest text-gray-500">Conquistas</h4>
+                <div id="milestones-list" class="space-y-4">
+                    <!-- Dinâmico -->
+                </div>
+            </div>
+
         </div>
 
-        <button onclick="logout()" class="w-full text-center text-xs text-gray-600 mt-10 uppercase tracking-widest hover:text-white transition-all">Encerrar Sessão</button>
     </section>
 
     <!-- MODAL DE LANÇAMENTO -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-6 z-50">
-        <div class="glass max-w-sm w-full p-8 rounded-[2.5rem] space-y-6">
-            <h3 id="modal-title" class="text-xl font-bold">Lançar</h3>
-            <input id="modal-value" type="number" placeholder="Valor R$" class="w-full p-4 rounded-2xl outline-none">
-            <div class="flex gap-2">
-                <button onclick="closeModal()" class="flex-1 py-4 text-gray-400 font-bold">Cancelar</button>
-                <button onclick="processMovement()" class="flex-2 py-4 px-8 gradient-gold text-black font-bold rounded-2xl">Confirmar</button>
+    <div id="modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center p-6 z-50">
+        <div class="glass max-w-sm w-full p-10 rounded-[3rem] space-y-6 shadow-2xl border-white/10">
+            <h3 id="modal-title" class="text-2xl font-black text-center">Lançar</h3>
+            <div class="space-y-2">
+                <label class="text-[10px] font-bold text-gray-500 uppercase ml-2">Valor do Registro (R$)</label>
+                <input id="modal-value" type="number" placeholder="0,00" class="w-full p-5 rounded-2xl outline-none text-2xl font-bold text-center">
+            </div>
+            <div class="flex flex-col gap-3">
+                <button onclick="processMovement()" class="w-full py-5 gradient-gold text-black font-black rounded-2xl shadow-lg">CONFIRMAR</button>
+                <button onclick="closeModal()" class="w-full py-3 text-gray-500 font-bold text-xs uppercase tracking-widest">Cancelar</button>
             </div>
         </div>
     </div>
 
     <script>
-        let db = JSON.parse(localStorage.getItem('horizonte_db')) || null;
+        let db = JSON.parse(localStorage.getItem('horizonte_premium_db')) || null;
         let currentAction = '';
 
+        const phrases = [
+            "Cada real é um minuto a mais de paz.",
+            "Vocês estão construindo o próprio castelo.",
+            "A liberdade não tem preço, mas tem um plano.",
+            "O futuro de vocês agradece pelo esforço de hoje.",
+            "Foco na jornada, o destino é inevitável.",
+            "Hoje vocês compraram um pouco mais de liberdade."
+        ];
+
         function checkData() {
-            if (!db) {
-                showScreen('screen-setup');
-            } else {
-                showScreen('screen-dashboard');
-                renderDashboard();
-            }
+            if (!db) { showScreen('screen-setup'); } 
+            else { showScreen('screen-dashboard'); renderDashboard(); }
         }
 
         function showScreen(id) {
@@ -130,82 +202,93 @@
 
         function saveSetup() {
             db = {
-                names: document.getElementById('set-names').value || 'Família',
-                age: parseInt(document.getElementById('set-age').value) || 30,
+                names: document.getElementById('set-names').value || 'Casal',
+                ages: document.getElementById('set-age').value || '30',
                 goal: parseFloat(document.getElementById('set-goal').value) || 1000000,
                 balance: parseFloat(document.getElementById('set-initial').value) || 0,
                 cdi: parseFloat(document.getElementById('set-cdi').value) || 11.5,
+                reinvest: parseFloat(document.getElementById('set-reinvest').value) || 20,
+                totalTimeSaved: 0,
                 history: []
             };
-            localStorage.setItem('horizonte_db', JSON.stringify(db));
+            localStorage.setItem('horizonte_premium_db', JSON.stringify(db));
             checkData();
         }
 
-        function renderDashboard() {
-            document.getElementById('display-names').innerText = db.names;
-            document.getElementById('display-balance').innerText = db.balance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-            
-            // Lógica de Progresso Mini-metas (100k em 100k)
-            let nextMilestone = Math.ceil((db.balance + 0.1) / 100000) * 100000;
-            if (nextMilestone == 0) nextMilestone = 100000;
-            let progress = (db.balance / nextMilestone) * 100;
-            document.getElementById('progress-bar').style.width = `${Math.min(progress, 100)}%`;
-            document.getElementById('display-goal-info').innerText = `Faltam R$ ${(nextMilestone - db.balance).toLocaleString('pt-BR')} para a conquista de R$ ${(nextMilestone/1000).toFixed(0)}k`;
-
-            // Cálculo de Tempo (Juros Compostos Simplificados)
-            calculateFreedom();
-            renderHistory();
-        }
-
-        function calculateFreedom() {
-            const monthlyRate = Math.pow(1 + (db.cdi/100), 1/12) - 1;
-            const target = db.goal;
-            let current = db.balance;
+        function calculateMonths(balance, goal, cdi) {
+            if (balance >= goal) return 0;
+            const monthlyRate = Math.pow(1 + (cdi/100), 1/12) - 1;
+            let current = balance;
             let months = 0;
-
-            if (current >= target) {
-                document.getElementById('display-date').innerText = "LIBERDADE!";
-                document.getElementById('display-future-age').innerText = "Objetivo alcançado";
-                return;
-            }
-
-            // Simulação simples de crescimento (sem novos aportes mensais fixos, apenas juros)
-            // Se o usuário quiser adicionar aporte mensal fixo, precisaríamos de outro campo.
-            while (current < target && months < 600) { // Limite de 50 anos
+            while (current < goal && months < 600) {
                 current *= (1 + monthlyRate);
                 months++;
             }
+            return months;
+        }
 
-            const futureDate = new Date();
-            futureDate.setMonth(futureDate.getMonth() + months);
+        function renderDashboard() {
+            document.getElementById('display-welcome').innerText = `Jornada de ${db.names}`;
+            document.getElementById('display-balance').innerText = db.balance.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('motivational-phrase').innerText = `"${phrases[Math.floor(Math.random() * phrases.length)]}"`;
             
-            const monthNames = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-            document.getElementById('display-date').innerText = `${monthNames[futureDate.getMonth()]} de ${futureDate.getFullYear()}`;
-            document.getElementById('display-future-age').innerText = `Aos ${db.age + Math.floor(months/12)} anos`;
+            // Progresso Meta Total
+            const percent = Math.min((db.balance / db.goal) * 100, 100);
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+            document.getElementById('display-percent').innerText = `${percent.toFixed(1)}%`;
+
+            // Tempo Estimado e Idades
+            const monthsRemaining = calculateMonths(db.balance, db.goal, db.cdi);
+            const futureDate = new Date();
+            futureDate.setMonth(futureDate.getMonth() + monthsRemaining);
+            
+            const monthsNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+            document.getElementById('display-date').innerText = monthsRemaining === 0 ? "LIBERDADE" : `${monthsNames[futureDate.getMonth()]} de ${futureDate.getFullYear()}`;
+            
+            // Cálculo de Idade Futura
+            const firstAge = parseInt(db.ages.split(/[^0-9]/)[0]) || 30;
+            document.getElementById('display-future-age').innerText = monthsRemaining === 0 ? "Objetivo Alcançado" : `Projeção: ${firstAge + Math.floor(monthsRemaining/12)} anos`;
+
+            // Tempo Total Salvo
+            document.getElementById('display-total-saved').innerText = formatTime(db.totalTimeSaved);
+
+            renderHistory();
+            renderMilestones();
         }
 
-        function openModal(type) {
-            currentAction = type;
-            document.getElementById('modal-title').innerText = type === 'aporte' ? 'Registrar Aporte' : 'Colher Fruto';
-            document.getElementById('modal').classList.remove('hidden');
+        function formatTime(days) {
+            if (days < 30) return `${Math.floor(days)} dias`;
+            if (days < 365) return `${Math.floor(days/30)} meses`;
+            return `${(days/365).toFixed(1)} anos`;
         }
-
-        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
         function processMovement() {
-            let val = parseFloat(document.getElementById('modal-value').value);
+            const val = parseFloat(document.getElementById('modal-value').value);
             if (!val) return;
 
-            if (currentAction === 'retirada') val = -val;
+            // Calcular tempo antes
+            const monthsBefore = calculateMonths(db.balance, db.goal, db.cdi);
             
-            db.balance += val;
+            const change = currentAction === 'aporte' ? val : -val;
+            db.balance += change;
+
+            // Calcular tempo depois
+            const monthsAfter = calculateMonths(db.balance, db.goal, db.cdi);
+            const monthsSaved = monthsBefore - monthsAfter;
+            const daysSaved = monthsSaved * 30.41;
+
+            if (currentAction === 'aporte' && daysSaved > 0) {
+                db.totalTimeSaved += daysSaved;
+            }
+
             db.history.unshift({
                 type: currentAction,
-                value: val,
+                value: change,
+                saved: daysSaved,
                 date: new Date().toLocaleDateString('pt-BR')
             });
 
-            localStorage.setItem('horizonte_db', JSON.stringify(db));
+            localStorage.setItem('horizonte_premium_db', JSON.stringify(db));
             renderDashboard();
             closeModal();
             document.getElementById('modal-value').value = '';
@@ -214,27 +297,58 @@
         function renderHistory() {
             const list = document.getElementById('history-list');
             list.innerHTML = '';
-            db.history.slice(0, 5).forEach(item => {
+            db.history.slice(0, 8).forEach(item => {
+                const isPos = item.value > 0;
                 const div = document.createElement('div');
-                div.className = "flex justify-between items-center p-3 border-b border-white/5";
+                div.className = "flex justify-between items-center group cursor-default";
                 div.innerHTML = `
-                    <div>
-                        <p class="text-xs font-bold uppercase tracking-tighter">${item.type === 'aporte' ? '💰 Aporte Extra' : '🍇 Colheita'}</p>
-                        <p class="text-[10px] text-gray-500">${item.date}</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center ${isPos ? 'bg-green-500/10 text-green-400' : 'bg-orange-500/10 text-orange-400'}">
+                            ${isPos ? '↑' : '↓'}
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-black uppercase text-gray-500 tracking-widest">${item.type === 'aporte' ? 'Comprei Tempo' : 'Colheita'}</p>
+                            <p class="text-xs font-medium text-white/80">${item.date}</p>
+                        </div>
                     </div>
-                    <span class="font-bold ${item.value > 0 ? 'text-green-400' : 'text-orange-400'}">
-                        ${item.value > 0 ? '+' : ''}${item.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                    </span>
+                    <div class="text-right">
+                        <p class="font-black ${isPos ? 'text-white' : 'text-orange-400'}">${isPos ? '+' : ''}${item.value.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+                        <p class="text-[9px] font-bold text-gold uppercase">${isPos && item.saved > 0 ? '− ' + formatTime(item.saved) : ''}</p>
+                    </div>
                 `;
                 list.appendChild(div);
             });
         }
 
-        function showSetup() { showScreen('screen-setup'); }
-        function logout() { localStorage.removeItem('horizonte_db'); location.reload(); }
+        function renderMilestones() {
+            const list = document.getElementById('milestones-list');
+            list.innerHTML = '';
+            // Cria marcos de 100k em 100k até 1M (ou além)
+            for(let i=1; i<=10; i++) {
+                const mValue = i * 100000;
+                const done = db.balance >= mValue;
+                const div = document.createElement('div');
+                div.className = `flex items-center gap-3 p-3 rounded-2xl border ${done ? 'bg-gold/10 border-gold/30' : 'bg-white/5 border-white/5 opacity-40'}`;
+                div.innerHTML = `
+                    <span class="text-lg">${done ? '✅' : '🔒'}</span>
+                    <div>
+                        <p class="text-[10px] font-black uppercase text-gray-400">Meta</p>
+                        <p class="text-xs font-bold ${done ? 'text-gold' : 'text-white'}">R$ ${(mValue/1000)}k</p>
+                    </div>
+                `;
+                list.appendChild(div);
+            }
+        }
 
-        // Iniciar
-        if(db) checkData();
+        function openModal(type) {
+            currentAction = type;
+            document.getElementById('modal-title').innerText = type === 'aporte' ? 'Aporte de Tempo' : 'Colher Frutos';
+            document.getElementById('modal').classList.remove('hidden');
+        }
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+        function logout() { if(confirm("Deseja mesmo limpar todos os dados?")) { localStorage.removeItem('horizonte_premium_db'); location.reload(); } }
+
+        checkData();
     </script>
 </body>
 </html>
